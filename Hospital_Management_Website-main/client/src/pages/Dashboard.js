@@ -123,7 +123,13 @@ const Dashboard = () => {
               </button>
             )}
 
-            {activeService === 'overview' && (
+          </nav>
+        </aside>
+
+        {/* Main Content Section */}
+        <section className="content-area">
+          {/* Overview Section */}
+          {activeService === 'overview' && (
             <div className="overview">
               <h2>Welcome, {user?.firstName}! 👋</h2>
               <p className="subtitle">Select a service to get started</p>
@@ -232,9 +238,6 @@ const Dashboard = () => {
               <p>Department: {user?.department}</p>
             </div>
           )}
-
-          {/* Hospital Service */}
-          {activeService === 'hospital' && services.includes('hospital') && (
             <div className="service-content">
               <h2>Hospital - Employee Health Management</h2>
               <p>Manage health checkups and medical records for employees.</p>

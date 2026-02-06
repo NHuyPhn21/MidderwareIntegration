@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./components/styles.css";
 import "./styles/health-check.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, AuthContext } from "./context/AuthContext";
 
 // Import pages
 import HomePage from "./pages/HomePage";
@@ -26,7 +26,7 @@ import MedicineListing from "./pages/Medicine";
 
 // Protected Route Component for Unified Portal
 const PortalProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = React.useContext(React.createContext());
+  const { isAuthenticated } = React.useContext(AuthContext);
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
