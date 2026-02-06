@@ -1,0 +1,806 @@
+/**
+ * Health Check UI Styles
+ * Styles for doctor health check interface
+ */
+
+/* ============================================================================
+   HEALTH CHECK CONTAINER
+   ============================================================================ */
+.health-check-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.health-check-header {
+  margin-bottom: 30px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.health-check-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.health-check-header p {
+  color: #718096;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ============================================================================
+   DATE SELECTOR
+   ============================================================================ */
+.date-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.date-input {
+  padding: 10px 15px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: white;
+  color: #2d3748;
+  transition: all 0.2s;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.btn-today {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+.btn-today:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.btn-today:active {
+  transform: translateY(0);
+}
+
+/* ============================================================================
+   SCHEDULE GRID
+   ============================================================================ */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+/* ============================================================================
+   SCHEDULE CARD
+   ============================================================================ */
+.schedule-card {
+  background: white;
+  border-left: 4px solid #4CAF50;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.schedule-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.schedule-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.schedule-card:hover::before {
+  opacity: 1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.card-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #2d3748;
+  font-size: 16px;
+}
+
+.card-time svg {
+  color: #4CAF50;
+  flex-shrink: 0;
+}
+
+.time {
+  color: #2d3748;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-confirmed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-checked {
+  background-color: #dbeafe;
+  color: #0c2d6b;
+}
+
+.status-missed {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+}
+
+.card-body {
+  margin-bottom: 12px;
+}
+
+.employee-info,
+.doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.employee-info svg,
+.doctor-info svg {
+  color: #4CAF50;
+  flex-shrink: 0;
+}
+
+.employee-info {
+  margin-bottom: 8px;
+}
+
+.employee-name {
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.employee-detail {
+  font-size: 12px;
+  color: #a0aec0;
+  margin: 2px 0 0 0;
+}
+
+.btn-check {
+  width: 100%;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #2196F3 0%, #1976d2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+.btn-check:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.btn-check:active {
+  transform: translateY(0);
+}
+
+/* ============================================================================
+   MODAL OVERLAY
+   ============================================================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   MODAL CONTENT
+   ============================================================================ */
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.health-check-modal {
+  max-width: 900px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.modal-subtitle {
+  margin: 4px 0 0 0;
+  color: #718096;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #a0aec0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  background-color: #edf2f7;
+  color: #2d3748;
+}
+
+/* ============================================================================
+   TABS
+   ============================================================================ */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 0 24px;
+  gap: 5px;
+  overflow-x: auto;
+  background-color: #f8f9fa;
+}
+
+.tab {
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #718096;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  margin-bottom: -2px;
+}
+
+.tab:hover {
+  color: #4a5568;
+}
+
+.tab.active {
+  color: #2196F3;
+  border-bottom-color: #2196F3;
+}
+
+.tab svg {
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   MODAL BODY
+   ============================================================================ */
+.modal-body {
+  padding: 24px;
+}
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 13px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2d3748;
+  transition: all 0.2s;
+  background-color: white;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0aec0;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+  background-color: #f0f7ff;
+}
+
+.health-status-select {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  color: #2d3748;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.health-status-select:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* ============================================================================
+   RESTRICTIONS GRID
+   ============================================================================ */
+.restrictions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.2s;
+  background-color: white;
+}
+
+.checkbox-label:hover {
+  background-color: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #4CAF50;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .restriction-name {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.restriction-name {
+  font-size: 13px;
+  color: #4a5568;
+  text-transform: capitalize;
+  flex: 1;
+  transition: all 0.2s;
+}
+
+/* ============================================================================
+   INFO BOX
+   ============================================================================ */
+.info-box {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #eff6ff;
+  border-left: 4px solid #2196F3;
+  border-radius: 6px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+.info-box svg {
+  color: #2196F3;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #1e40af;
+  line-height: 1.6;
+}
+
+.info-box strong {
+  font-weight: 700;
+}
+
+/* ============================================================================
+   MODAL FOOTER
+   ============================================================================ */
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 20px 24px;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f8f9fa;
+  position: sticky;
+  bottom: 0;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background: linear-gradient(135deg, #a0aec0 0%, #cbd5e0 100%);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #2d3748;
+  border: 1px solid #cbd5e0;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #edf2f7;
+  border-color: #a0aec0;
+}
+
+.btn-secondary:disabled {
+  color: #a0aec0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================================
+   RESULTS CONTAINER
+   ============================================================================ */
+.results-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.results-container h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 20px;
+}
+
+/* ============================================================================
+   RESULTS TABLE
+   ============================================================================ */
+.results-table {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.results-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.results-table th {
+  background: linear-gradient(135deg, #f8f9fa 0%, #edf2f7 100%);
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+  color: #2d3748;
+  border-bottom: 2px solid #cbd5e0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.results-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.results-table tr:hover {
+  background-color: #f7fafc;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.employee-cell {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.restrictions-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #fef3c7;
+  color: #92400e;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.no-restrictions {
+  color: #a0aec0;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.conclusion-cell {
+  font-size: 13px;
+  color: #4a5568;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* ============================================================================
+   STATES
+   ============================================================================ */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #a0aec0;
+}
+
+.loading {
+  text-align: center;
+  padding: 30px 20px;
+  color: #718096;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   STATUS STYLES
+   ============================================================================ */
+.status-Type_1 {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-Type_2 {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-Type_3 {
+  background-color: #dbeafe;
+  color: #0c2d6b;
+}
+
+.status-Type_4 {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+@media (max-width: 768px) {
+  .health-check-container {
+    padding: 12px;
+  }
+
+  .health-check-header {
+    padding: 16px;
+  }
+
+  .health-check-header h1 {
+    font-size: 22px;
+  }
+
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .date-selector {
+    flex-direction: column;
+  }
+
+  .date-input,
+  .btn-today {
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .restrictions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer button {
+    width: 100%;
+  }
+
+  .results-table {
+    font-size: 12px;
+  }
+
+  .results-table td,
+  .results-table th {
+    padding: 10px 8px;
+  }
+}
