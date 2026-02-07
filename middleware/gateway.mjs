@@ -1,0 +1,107 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Config
+import connectDB from './config/db.js';
+import SYSTEMS from './config/systems.js';
+
+// Routes
+import gatewayRoutes from './routes/gateway.js';
+import authRoutes from './routes/auth.js';
+import hospitalRoutes from './routes/hospital.js';
+import hrRoutes from './routes/hr.js';
+import hotelRoutes from './routes/hotel.js';
+import syncRoutes from './routes/sync.js';
+import healthCheckRoutes from './routes/healthCheck.js';
+import reportRoutes from './routes/reports.js';
+
+// Jobs
+import startCronJobs from './jobs/cron.js';
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+const PORT = process.env.GATEWAY_PORT || 6060;
+
+// Middleware
+app.use(express.json());
+
+// Connect Database
+connectDB();
+
+// ============================================
+// Routes Registration
+// ============================================
+
+// Gateway & Systems Status (Includes /logs)
+app.use('/api/gateway', gatewayRoutes);
+
+// Auth
+app.use('/api/gateway/auth', authRoutes);
+
+// Hospital Integration
+app.use('/api/gateway/hospital', hospitalRoutes);
+
+// HR Integration
+app.use('/api/gateway/hr', hrRoutes);
+
+// Hotel Integration
+app.use('/api/gateway/hotel', hotelRoutes);
+
+// Sync (Legacy)
+app.use('/api/gateway/sync', syncRoutes);
+
+// Health Check & New Sync
+app.use('/api/gateway/health-check', healthCheckRoutes);
+
+// Reports
+app.use('/api/gateway/reports', reportRoutes);
+
+// ============================================
+// Dashboard & Static Files
+// ============================================
+
+const publicPath = path.join(__dirname, 'public');
+app.use('/dashboard', express.static(publicPath));
+
+// Redirect /dashboard to /dashboard/index.html
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+// ============================================
+// Error Handling & Start
+// ============================================
+
+app.use((req, res) => {
+  res.status(404).json({
+    code: 2,
+    message: 'Endpoint not found',
+    success: false,
+    path: req.path
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`\n🌐 API GATEWAY RUNNING`);
+  console.log(`📌 Port: ${PORT}`);
+  console.log(`🔗 Health: http://localhost:${PORT}/api/gateway/health\n`);
+  console.log(`📊 Connected Systems:`);
+  Object.entries(SYSTEMS).forEach(([key, system]) => {
+    console.log(`   ${system.name}: ${system.baseUrl} (${system.type})`);
+  });
+  console.log(`✅ Health Check Integration: /api/gateway/health-check/*`);
+  console.log(`✅ Dashboard: http://localhost:${PORT}/dashboard`);
+  console.log(`\n`);
+
+  // Start Cron Jobs after server starts
+  startCronJobs(PORT);
+});
+
+export default app;
